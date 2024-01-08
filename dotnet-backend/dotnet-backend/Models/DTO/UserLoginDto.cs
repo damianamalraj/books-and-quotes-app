@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace dotnet_backend.Models.DTO
 {
-  public class UserDto
+  public class UserLoginDto
   {
-    public string Name { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
   }

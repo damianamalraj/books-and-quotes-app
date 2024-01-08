@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
   }
 
   [HttpPost("register")]
-  public IActionResult Register([FromBody] UserDto userDto)
+  public IActionResult Register([FromBody] UserRegisterDto userDto)
   {
     string PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
 
@@ -46,7 +46,7 @@ public class AuthController : ControllerBase
   }
 
   [HttpPost("login")]
-  public IActionResult Login([FromBody] UserDto userDto)
+  public IActionResult Login([FromBody] UserLoginDto userDto)
   {
     var user = _context.Users.SingleOrDefault(u => u.Email == userDto.Email);
 
