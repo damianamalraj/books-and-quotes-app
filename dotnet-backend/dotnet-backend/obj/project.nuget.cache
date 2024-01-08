@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4iBvk3aa7FDXFlTEOoPHYoPATUytH2luKSm64cJ3RYbczQu69TpeVBit+5dfFrpKnwt1FtQSHbgSOu+SUobf/g==",
+  "dgSpecHash": "X0l91xTnngl8D1oTyxRssZKdSzazBRSEU2thbE1grRUVe2o1oYhzMfnVjqjPDdN18w0BJKFM3NXNDIXVGKVy3w==",
   "success": true,
   "projectFilePath": "/Users/damianamalraj/Documents/Repos/books-and-quotes-app/dotnet-backend/dotnet-backend/dotnet-backend.csproj",
   "expectedPackageFiles": [
+    "/Users/damianamalraj/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/damianamalraj/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/damianamalraj/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/damianamalraj/.nuget/packages/microsoft.data.sqlclient/2.1.4/microsoft.data.sqlclient.2.1.4.nupkg.sha512",

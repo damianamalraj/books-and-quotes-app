@@ -8,10 +8,11 @@ namespace dotnet_backend.Models
     public class User
     {
         public int Id { get; set; }
-        public string Username { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
         public string PasswordHash { get; set; }
 
-        // public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
         public virtual ICollection<Quote> Quotes { get; set; }
     }
 }

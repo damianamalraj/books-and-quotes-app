@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using dotnet_backend.Data;
 using dotnet_backend.Models;
+using dotnet_backend.Models.ViewModel;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -16,7 +17,15 @@ public class BooksController : ControllerBase
   [HttpGet]
   public IActionResult GetAllBooks()
   {
-    var books = _context.Books.ToList();
+    var books = _context.Books.Select(book => new BookViewModel
+    {
+      Id = book.Id,
+      UserId = book.UserId,
+      Title = book.Title,
+      Author = book.Author,
+      PublicationDate = book.PublicationDate
+    }).ToArray();
+
     return Ok(books);
   }
 

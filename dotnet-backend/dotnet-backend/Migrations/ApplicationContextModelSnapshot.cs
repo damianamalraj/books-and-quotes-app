@@ -30,17 +30,20 @@ namespace dotnet_backend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Author")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PublicationDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Books");
                 });
@@ -54,7 +57,6 @@ namespace dotnet_backend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("userId")
@@ -75,17 +77,33 @@ namespace dotnet_backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("dotnet_backend.Models.Book", b =>
+                {
+                    b.HasOne("dotnet_backend.Models.User", "user")
+                        .WithMany("Books")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("dotnet_backend.Models.Quote", b =>
@@ -101,6 +119,8 @@ namespace dotnet_backend.Migrations
 
             modelBuilder.Entity("dotnet_backend.Models.User", b =>
                 {
+                    b.Navigation("Books");
+
                     b.Navigation("Quotes");
                 });
 #pragma warning restore 612, 618
