@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using dotnet_backend.Data;
 using dotnet_backend.Models;
 using dotnet_backend.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using dotnet_backend.Models.DTO;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -39,16 +43,41 @@ public class BooksController : ControllerBase
       return NotFound();
     }
 
-    return Ok(book);
+    return Ok(new BookViewModel
+    {
+      Id = book.Id,
+      UserId = book.UserId,
+      Title = book.Title,
+      Author = book.Author,
+      PublicationDate = book.PublicationDate
+    });
   }
 
   [HttpPost]
-  public IActionResult AddBook([FromBody] Book book)
+  [Authorize]
+  public IActionResult AddBook([FromBody] BookDto bookDto)
   {
+    var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+    var book = new Book
+    {
+      UserId = userId,
+      Title = bookDto.Title,
+      Author = bookDto.Author,
+      PublicationDate = DateTime.Now
+    };
+
     _context.Books.Add(book);
     _context.SaveChanges();
 
-    return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
+    return Ok(new BookViewModel
+    {
+      Id = book.Id,
+      UserId = book.UserId,
+      Title = book.Title,
+      Author = book.Author,
+      PublicationDate = book.PublicationDate
+    });
   }
 
 }

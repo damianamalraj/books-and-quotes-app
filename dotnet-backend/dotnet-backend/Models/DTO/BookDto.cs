@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace dotnet_backend.Models.DTO
 {
-  public class UserDto
+  public class BookDto
   {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public string Title { get; set; }
+    public string Author { get; set; }
   }
 }

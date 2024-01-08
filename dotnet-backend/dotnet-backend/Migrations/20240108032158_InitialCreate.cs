@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -32,7 +33,7 @@ namespace dotnet_backend.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PublicationDate = table.Column<int>(type: "int", nullable: false)
+                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
