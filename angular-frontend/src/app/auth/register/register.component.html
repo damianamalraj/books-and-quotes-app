@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        [(ngModel)]="this.user.username"
+        name="username"
+        class="form-control"
+        type="text"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        [(ngModel)]="this.user.password"
+        name="password"
+        class="form-control"
+        type="password"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="register()">
+      Register
+    </button>
+  </form>
+</div>

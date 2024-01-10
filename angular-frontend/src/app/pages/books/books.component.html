@@ -1,0 +1,9 @@
+<div class="px-5">
+  <h1>Books</h1>
+
+  <div class="row align-self-center">
+    <div *ngFor="let book of data" class="col-lg-3 col-md-6 col-sm-12">
+      <app-book [book]="book"></app-book>
+    </div>
+  </div>
+</div>
