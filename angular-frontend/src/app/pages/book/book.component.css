@@ -1,0 +1,16 @@
+.wrapper {
+  width: 100vw;
+  display: flex;
+  border: 10px solid #ff0000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 32rem;
+  height: 32rem;
+  padding: 20px;
+  border: 10px solid #0d00ff;
+}

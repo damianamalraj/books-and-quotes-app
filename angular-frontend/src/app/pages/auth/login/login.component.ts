@@ -17,8 +17,6 @@ export class LoginComponent {
   login() {
     this.authService.login(this.user).subscribe(
       (data) => {
-        sessionStorage.setItem('authToken', data);
-        console.log(data);
         if (data) {
           this.router.navigate(['/books']);
         }

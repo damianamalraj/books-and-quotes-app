@@ -1,0 +1,24 @@
+<div class="card wrapper">
+  <div class="card-body container">
+    <h1 class="card-title">{{ book.title }}</h1>
+    <p class="card-text">Author: {{ book.author }}</p>
+    <p class="card-text">Published Date: {{ book.publicationDate | date }}</p>
+
+    <div class="btn-container">
+      <button
+        class="btn btn-primary"
+        *ngIf="isLoggedIn"
+        (click)="navigateToUpdate(book.id)"
+      >
+        Update
+      </button>
+      <button
+        class="btn btn-danger"
+        *ngIf="isLoggedIn"
+        (click)="deleteBook(book.id)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

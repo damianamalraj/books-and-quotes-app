@@ -3,15 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BooksComponent } from './pages/books/books.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { BookComponent } from './components/book/book.component';
+import { CardComponent } from './components/card/card.component';
+import { BookComponent } from './pages/book/book.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BookComponent } from './components/book/book.component';
     LoginComponent,
     HeaderComponent,
     BooksComponent,
+    CardComponent,
     BookComponent,
   ],
   imports: [

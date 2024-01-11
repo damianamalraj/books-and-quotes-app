@@ -12,4 +12,16 @@ export class BooksService {
   getBooks() {
     return this.http.get(`${environment.apiUrl}/books`);
   }
+
+  getBookById(id: number) {
+    return this.http.get(`${environment.apiUrl}/books/${id}`);
+  }
+
+  updateBook(id: number, data: any) {
+    return this.http.put(`${environment.apiUrl}/books/${id}`, data);
+  }
+
+  deleteBook(id: number) {
+    return this.http.delete(`${environment.apiUrl}/books/${id}`);
+  }
 }

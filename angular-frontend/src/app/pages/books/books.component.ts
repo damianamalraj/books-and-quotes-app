@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -9,7 +10,7 @@ import { BooksService } from 'src/app/services/books.service';
 export class BooksComponent {
   data: any;
 
-  constructor(private booksService: BooksService) {}
+  constructor(private booksService: BooksService, private router: Router) {}
 
   ngOnInit(): void {
     this.getBooks();
@@ -25,5 +26,9 @@ export class BooksComponent {
         console.log(error);
       }
     );
+  }
+
+  navigateToDetails(bookId: number): void {
+    this.router.navigate(['/book', bookId]);
   }
 }

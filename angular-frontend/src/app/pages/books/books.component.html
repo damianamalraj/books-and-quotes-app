@@ -3,7 +3,7 @@
 
   <div class="row align-self-center">
     <div *ngFor="let book of data" class="col-lg-3 col-md-6 col-sm-12">
-      <app-book [book]="book"></app-book>
+      <app-card [book]="book" (click)="navigateToDetails(book.id)"></app-card>
     </div>
   </div>
 </div>
