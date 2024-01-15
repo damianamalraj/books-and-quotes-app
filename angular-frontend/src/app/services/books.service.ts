@@ -10,6 +10,9 @@ export class BooksService {
   constructor(private http: HttpClient) {}
 
   getBooks() {
+    // const token = sessionStorage.getItem('authToken');
+    // const Headers = { Authorization: `Bearer ${token}` };
+
     return this.http.get(`${environment.apiUrl}/books`);
   }
 
