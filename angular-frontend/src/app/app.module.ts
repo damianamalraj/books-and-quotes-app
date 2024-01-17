@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { CardComponent } from './components/card/card.component';
 import { BookComponent } from './pages/book/book.component';
+import { QuotesComponent } from './pages/quotes/quotes.component';
+import { ThemeService } from './services/theme.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { BookComponent } from './pages/book/book.component';
     BooksComponent,
     CardComponent,
     BookComponent,
+    QuotesComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { BookComponent } from './pages/book/book.component';
       useClass: AuthInterceptor,
       multi: true,
     },
+    ThemeService,
   ],
   bootstrap: [AppComponent],
 })

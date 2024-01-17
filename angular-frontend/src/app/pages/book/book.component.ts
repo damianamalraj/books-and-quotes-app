@@ -12,6 +12,9 @@ import { BooksService } from 'src/app/services/books.service';
 export class BookComponent {
   book: any = '';
   isLoggedIn = false;
+  isEditBook = false;
+  editBook: Book = new Book();
+  bookId: number = 0;
 
   constructor(
     private booksServise: BooksService,
@@ -21,25 +24,51 @@ export class BookComponent {
   ) {}
 
   ngOnInit(): void {
-    const bookId = this.route.snapshot.params['id'];
-
-    this.booksServise.getBookById(bookId).subscribe((data) => {
-      this.book = data;
-      console.log(data);
-      console.log(this.book);
-    });
-
+    this.bookId = this.route.snapshot.params['id'];
+    this.getBookById();
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
-      console.log('✅✅✅✅✅✅✅✅' + this.isLoggedIn);
     });
   }
 
-  navigateToUpdate(bookId: number): void {
-    // this.router.navigate(['/update-book', bookId]);
+  toggleEditBook(): void {
+    this.isEditBook = !this.isEditBook;
+  }
+
+  getBookById(): void {
+    this.booksServise.getBookById(this.bookId).subscribe(
+      (data) => {
+        this.book = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  updateBook(): void {
+    this.booksServise.updateBook(this.bookId, this.editBook).subscribe(
+      (response) => {
+        console.log(response);
+        this.getBookById();
+        this.toggleEditBook();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   deleteBook(bookId: number): void {
-    // Implement book deletion logic here
+    this.booksServise.deleteBook(bookId).subscribe(
+      (response) => {
+        console.log(response);
+        this.router.navigate(['/books']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

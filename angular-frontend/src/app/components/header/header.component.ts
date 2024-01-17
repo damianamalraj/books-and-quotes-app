@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent {
 
   constructor(
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private themeService: ThemeService
   ) {}
 
   ngOnInit(): void {
@@ -23,5 +24,13 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.signout();
+  }
+
+  getCurrentTheme(): string {
+    return this.themeService.getCurrentTheme();
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 }

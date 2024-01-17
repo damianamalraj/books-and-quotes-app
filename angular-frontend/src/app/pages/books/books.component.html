@@ -1,9 +1,35 @@
 <div class="px-5">
-  <h1>Books</h1>
+  <div class="addBook-wrapper">
+    <div class="addBook-container" *ngIf="isLoggedIn && !isAddBookFalse">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Title"
+        [(ngModel)]="book.title"
+        required="true"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Author"
+        [(ngModel)]="book.author"
+        required="true"
+      />
+      <button class="btn btn-success" (click)="addBook()">Add book</button>
+      <button class="btn btn-danger" (click)="toggleAddBook()">Cancel</button>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="toggleAddBook()"
+      *ngIf="isAddBookFalse"
+    >
+      Add book
+    </button>
+  </div>
 
   <div class="row align-self-center">
     <div *ngFor="let book of data" class="col-lg-3 col-md-6 col-sm-12">
-      <app-card [book]="book" (click)="navigateToDetails(book.id)"></app-card>
+      <app-card [book]="book" (click)="navigateToDetails(book.id)"> </app-card>
     </div>
   </div>
 </div>

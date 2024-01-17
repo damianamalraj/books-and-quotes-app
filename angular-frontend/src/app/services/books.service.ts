@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -10,10 +9,11 @@ export class BooksService {
   constructor(private http: HttpClient) {}
 
   getBooks() {
-    // const token = sessionStorage.getItem('authToken');
-    // const Headers = { Authorization: `Bearer ${token}` };
-
     return this.http.get(`${environment.apiUrl}/books`);
+  }
+
+  addBook(data: any) {
+    return this.http.post(`${environment.apiUrl}/books`, data);
   }
 
   getBookById(id: number) {

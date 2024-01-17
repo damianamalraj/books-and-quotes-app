@@ -1,0 +1,43 @@
+<div class="quote-wrapper">
+  <div class="card-columns">
+    <div class="addQuote-wrapper">
+      <div class="addQuote-container" *ngIf="isLoggedIn && !isAddQuoteFalse">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Content"
+          [(ngModel)]="quote.content"
+          required="true"
+        />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Author"
+          [(ngModel)]="quote.source"
+          required="true"
+        />
+        <button class="btn btn-success" (click)="addQuote()">Add Quote</button>
+        <button class="btn btn-danger" (click)="toggleAddQuote()">
+          Cancel
+        </button>
+      </div>
+      <button
+        class="btn btn-primary"
+        (click)="toggleAddQuote()"
+        *ngIf="isAddQuoteFalse"
+      >
+        Add Quote
+      </button>
+    </div>
+    <div *ngFor="let quote of quotes" class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ quote.content }}</h5>
+        <p class="card-text">Author: {{ quote.source }}</p>
+        <button class="btn btn-danger" (click)="deleteQuote(quote.id)">
+          <i class="fa-solid fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

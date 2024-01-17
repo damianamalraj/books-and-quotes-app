@@ -1,22 +1,42 @@
-<div class="card wrapper">
-  <div class="card-body container">
-    <h1 class="card-title">{{ book.title }}</h1>
-    <p class="card-text">Author: {{ book.author }}</p>
+<div class="wrapper">
+  <div class="card container">
+    <div class="editButtons" *ngIf="isEditBook">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Title"
+        [(ngModel)]="editBook.title"
+        required="true"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Auther"
+        [(ngModel)]="editBook.author"
+        required="true"
+      />
+    </div>
+    <h1 class="card-title" *ngIf="!isEditBook">{{ book.title }}</h1>
+    <p class="card-text" *ngIf="!isEditBook">Author: {{ book.author }}</p>
     <p class="card-text">Published Date: {{ book.publicationDate | date }}</p>
 
-    <div class="btn-container">
-      <button
-        class="btn btn-primary"
-        *ngIf="isLoggedIn"
-        (click)="navigateToUpdate(book.id)"
-      >
+    <div class="btn-container" *ngIf="isEditBook">
+      <button class="btn btn-success" (click)="updateBook()">
+        <i class="fa-solid fa-arrow-up"></i>
         Update
       </button>
-      <button
-        class="btn btn-danger"
-        *ngIf="isLoggedIn"
-        (click)="deleteBook(book.id)"
-      >
+      <button class="btn btn-danger" (click)="toggleEditBook()">
+        <i class="fa-solid fa-xmark"></i>
+        Cancel
+      </button>
+    </div>
+    <div class="btn-container" *ngIf="!isEditBook">
+      <button class="btn btn-primary" (click)="toggleEditBook()">
+        <i class="fa-solid fa-pen"></i>
+        Edit
+      </button>
+      <button class="btn btn-danger" (click)="deleteBook(book.id)">
+        <i class="fa-solid fa-trash"></i>
         Delete
       </button>
     </div>
