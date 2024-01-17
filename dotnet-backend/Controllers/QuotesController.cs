@@ -21,7 +21,9 @@ public class QuotesController : ControllerBase
   [Authorize]
   public IActionResult GetAllQuotes()
   {
-    var quotes = _context.Quotes.Select(quote => new QuoteViewModel
+    var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+    var quotes = _context.Quotes.Where(quote => quote.UserId == userId).Select(quote => new QuoteViewModel
     {
       Id = quote.Id,
       UserId = quote.UserId,
@@ -55,5 +57,36 @@ public class QuotesController : ControllerBase
       Content = quote.Content,
       Source = quote.Source
     });
+  }
+
+  [HttpDelete("{id}")]
+  [Authorize]
+  public IActionResult DeleteQuote(int id)
+  {
+    var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+    var quote = _context.Quotes.Find(id);
+
+    if (quote == null)
+    {
+      return NotFound();
+    }
+
+    if (quote.UserId != userId)
+    {
+      return Unauthorized();
+    }
+
+    _context.Quotes.Remove(quote);
+    _context.SaveChanges();
+
+    return Ok(new QuoteViewModel
+    {
+      Id = quote.Id,
+      UserId = quote.UserId,
+      Content = quote.Content,
+      Source = quote.Source
+    });
+
   }
 }

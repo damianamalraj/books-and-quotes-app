@@ -18,6 +18,7 @@ public class BooksController : ControllerBase
   }
 
   [HttpGet]
+  [Authorize]
   public IActionResult GetAllBooks()
   {
     var books = _context.Books.Select(book => new BookViewModel
@@ -33,6 +34,7 @@ public class BooksController : ControllerBase
   }
 
   [HttpGet("{id}")]
+  [Authorize]
   public IActionResult GetBookById(int id)
   {
     var book = _context.Books.Find(id);
