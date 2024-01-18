@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:dev": "ng serve --ssl true --ssl-cert \"cert/localhost.pem\" --ssl-key \"cert/localhost-key.pem\"",
-    "build:prod": "ng build --output-path ../docs --base-href /books-and-quotes --configuration=production"
+    "build:prod": "ng build --output-path ../docs --configuration=production"
   },
   "private": true,
   "dependencies": {
