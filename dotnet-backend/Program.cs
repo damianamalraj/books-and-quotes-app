@@ -32,7 +32,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "CorsPolicy", policy =>
     {
-        policy.withOrigins("https://books-and-quotes.netlify.app").AllowAnyMethod().AllowAnyHeader();
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
 
