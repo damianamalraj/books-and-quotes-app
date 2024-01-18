@@ -23,10 +23,10 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build dotnet-backend --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish dotnet-backend -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -48,14 +48,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_ECBF121761D14059896EA8106681AC8E }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_50D8673603FD4F0ABED7E236C0F73296 }}
           allow-no-subscriptions: true
-          
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -63,4 +63,3 @@ jobs:
           app-name: 'BooksAndQuotesAPI'
           slot-name: 'Production'
           package: .
-          
