@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://booksandquotesapi.azurewebsites.net/api',
+  apiUrl: 'https://books-and-quotes-api.azurewebsites.net/api',
 };
